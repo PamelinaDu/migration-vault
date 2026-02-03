@@ -9,6 +9,8 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import { db } from "./database/server";
+
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -39,6 +41,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </body>
     </html>
   );
+}
+
+export async function loader() {
+  const result = await db.execute("select 1 as ok");
+  console.log("Database connection test result:", result);
+  return Response.json({ ok: result });
 }
 
 export default function App() {
