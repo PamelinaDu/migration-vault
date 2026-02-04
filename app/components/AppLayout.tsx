@@ -19,7 +19,7 @@ function NavItem({ to, label }: { to: string; label: string }) {
   )
 }
 
-export function AppLayout() {
+export function AppLayout({ children }: { children?: React.ReactNode }) {
   return (
     <div className="min-h-screen">
       <header className="border-b">
@@ -39,9 +39,7 @@ export function AppLayout() {
         </div>
       </header>
 
-      <main className="mx-auto max-w-5xl px-6 py-6">
-        <Outlet />
-      </main>
+      <main className="mx-auto max-w-5xl px-6 py-6">{children}</main>
     </div>
   )
 }
